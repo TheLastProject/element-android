@@ -151,6 +151,7 @@ import im.vector.app.features.command.ParsedCommand
 import im.vector.app.features.crypto.keysbackup.restore.KeysBackupRestoreActivity
 import im.vector.app.features.crypto.verification.VerificationBottomSheet
 import im.vector.app.features.home.AvatarRenderer
+import im.vector.app.features.home.room.detail.RoomDetailAction.VoiceBroadcastAction
 import im.vector.app.features.home.room.detail.arguments.TimelineArgs
 import im.vector.app.features.home.room.detail.composer.CanSendStatus
 import im.vector.app.features.home.room.detail.composer.MessageComposerAction
@@ -2677,7 +2678,7 @@ class TimelineFragment :
                                 locationOwnerId = session.myUserId
                         )
             }
-            AttachmentTypeSelectorView.Type.VOICE_BROADCAST -> timelineViewModel.handle(RoomDetailAction.StartVoiceBroadcast)
+            AttachmentTypeSelectorView.Type.VOICE_BROADCAST -> timelineViewModel.handle(VoiceBroadcastAction.Start)
         }
     }
 
