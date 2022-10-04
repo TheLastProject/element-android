@@ -80,6 +80,7 @@ import im.vector.app.core.extensions.cleanup
 import im.vector.app.core.extensions.containsRtLOverride
 import im.vector.app.core.extensions.ensureEndsLeftToRight
 import im.vector.app.core.extensions.filterDirectionOverrides
+import im.vector.app.core.extensions.getVectorLastMessageContent
 import im.vector.app.core.extensions.hideKeyboard
 import im.vector.app.core.extensions.registerStartForActivityResult
 import im.vector.app.core.extensions.setTextOrHide
@@ -247,7 +248,6 @@ import org.matrix.android.sdk.api.session.room.model.message.MessageWithAttachme
 import org.matrix.android.sdk.api.session.room.send.SendState
 import org.matrix.android.sdk.api.session.room.timeline.Timeline
 import org.matrix.android.sdk.api.session.room.timeline.TimelineEvent
-import org.matrix.android.sdk.api.session.room.timeline.getLastMessageContent
 import org.matrix.android.sdk.api.session.widgets.model.Widget
 import org.matrix.android.sdk.api.session.widgets.model.WidgetType
 import org.matrix.android.sdk.api.util.MatrixItem
@@ -1270,7 +1270,7 @@ class TimelineFragment :
             setTextColor(matrixItemColorProvider.getColor(MatrixItem.UserItem(event.root.senderId ?: "@")))
         }
 
-        val messageContent: MessageContent? = event.getLastMessageContent()
+        val messageContent: MessageContent? = event.getVectorLastMessageContent()
         val nonFormattedBody = when (messageContent) {
             is MessageAudioContent -> getAudioContentBodyText(messageContent)
             is MessagePollContent -> messageContent.getBestPollCreationInfo()?.question?.getBestQuestion()
